@@ -51,14 +51,14 @@ public class DPFibonacci {
 
         long startTime = System.nanoTime();
 
-        // System.out.println(fibonacci(n));
+        System.out.println(fibonacci(n));
         // System.out.println(dpFibonacci(n, fib));
         // System.out.println(spaceOptimizedDpFibonacci(n));
 
         long endTime = System.nanoTime();
 
-        long executionTime = (endTime - startTime) / 1000000;
+        long executionTime = (endTime - startTime) / 1000;
 
-        System.out.println("Execution time: " + executionTime + "ms");
+        System.out.println("Execution time: " + executionTime + " micro seconds");
     }
 }
