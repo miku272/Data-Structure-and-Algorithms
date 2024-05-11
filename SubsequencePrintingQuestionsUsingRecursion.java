@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class SubsequencePrintingQuestionsUsingRecursion {
-    public static void printSumSubsequence(int[] arr, int sum, int index, ArrayList<Integer> result) {
+    public static void printAllSumSubsequence(int[] arr, int sum, int index, ArrayList<Integer> result) {
         if (index >= arr.length) {
             int total = 0;
 
@@ -20,17 +20,50 @@ public class SubsequencePrintingQuestionsUsingRecursion {
         }
 
         result.add(arr[index]);
-        printSumSubsequence(arr, sum, index + 1, result);
+        printAllSumSubsequence(arr, sum, index + 1, result);
 
         result.remove(result.size() - 1);
-        printSumSubsequence(arr, sum, index + 1, result);
+        printAllSumSubsequence(arr, sum, index + 1, result);
+    }
+
+    public static boolean printOnlyOneSumSubsequence(int[] arr, int sum, int index, ArrayList<Integer> result) {
+        if (index >= arr.length) {
+            int total = 0;
+
+            for (int res : result) {
+                total += res;
+            }
+
+            if (total == sum) {
+                for (int res : result) {
+                    System.out.print(res + " ");
+                }
+                System.out.println();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        result.add(arr[index]);
+        if (printOnlyOneSumSubsequence(arr, sum, index + 1, result) == true) {
+            return true;
+        }
+
+        result.remove(result.size() - 1);
+        if (printOnlyOneSumSubsequence(arr, sum, index + 1, result) == true) {
+            return true;
+        }
+
+        return false;
     }
 
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3 };
+        int[] arr = { 1, 2, 1 };
         ArrayList<Integer> result = new ArrayList<>();
-        int sum = 3;
+        int sum = 2;
 
-        printSumSubsequence(arr, sum, 0, result);
+        printAllSumSubsequence(arr, sum, 0, result);
     }
 }
